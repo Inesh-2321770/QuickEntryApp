@@ -1,0 +1,100 @@
+﻿@model QuickEntryApp.Models.BookingViewModel
+@{
+    ViewData["Title"] = "Booking Form";
+}
+
+<h2>@ViewData["Title"]</h2>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#venue-dropdown").change(function () {
+            var venueId = $(this).val();
+
+            if (venueId) {
+                $.get('/BookingForm/GetVenueTimes?venueId=' + venueId, function (data) {
+                    var startTime = data.startTime;
+                    var endTime = data.endTime;
+
+                    $("#BookingTime").attr({
+                        "min": startTime,
+                        "max": endTime
+                    });
+
+                    // Update the text of the div elements
+                    $("#venue-start-time").text("Start Time: " + startTime);
+                    $("#venue-end-time").text("End Time: " + endTime);
+                });
+            }
+        });
+
+        $("#venue-dropdown, #NoOfVisitors").change(function () {
+            var venueId = $("#venue-dropdown").val();
+            var noOfVisitors = $("#NoOfVisitors").val();
+
+            if (venueId && noOfVisitors) {
+                $.get('/BookingForm/GetVenuePrice?venueId=' + venueId, function (price) {
+                    var totalPayment = price * noOfVisitors;
+                    $("#total-payment").val(totalPayment);
+                });
+            }
+        });
+    });
+</script>
+
+@using (Html.BeginForm("SubmitBooking", "BookingForm", FormMethod.Post))
+{
+    <div>
+        @Html.LabelFor(model => model.Name)
+        @Html.TextBoxFor(model => model.Name, new { required = "required" })
+        @Html.ValidationMessageFor(model => model.Name)
+    </div>
+
+    <div>
+        @Html.LabelFor(model => model.Email)
+        @Html.TextBoxFor(model => model.Email, new { required = "required" })
+        @Html.ValidationMessageFor(model => model.Email)
+    </div>
+
+    <div>
+        @Html.LabelFor(model => model.PhoneNumber)
+        @Html.TextBoxFor(model => model.PhoneNumber, new { required = "required" })
+        @Html.ValidationMessageFor(model => model.PhoneNumber)
+    </div>
+
+    <div>
+        @Html.LabelFor(model => model.NoOfVisitors)
+        @Html.TextBoxFor(model => model.NoOfVisitors, new { required = "required" })
+        @Html.ValidationMessageFor(model => model.NoOfVisitors)
+    </div>
+
+    <div>
+        @Html.LabelFor(model => model.SelectedVenueId, "Select Venue")
+        @Html.DropDownListFor(model => model.SelectedVenueId, new SelectList(Model.Venues, "VenueID", "VenueName"), "Selecte Venue", new { id = "venue-dropdown", required = "required" })
+        @Html.ValidationMessageFor(model => model.SelectedVenueId)
+    </div>
+
+    <div>
+        @Html.LabelFor(model => model.TotalPayment)
+        @Html.TextBoxFor(model => model.TotalPayment, new { @readonly = "readonly", @id = "total-payment" })
+    </div>
+
+    <div>
+        @Html.LabelFor(model => model.BookingDate, "Booking Date")
+        @Html.TextBoxFor(model => model.BookingDate, new { @type = "date", required = "required" })
+        @Html.ValidationMessageFor(model => model.BookingDate)
+    </div>
+
+   
+        <div id="venue-start-time"></div>
+        <div id="venue-end-time"></div>
+
+   
+
+    <div>
+        @Html.LabelFor(model => model.BookingTime, "Booking Time")
+        @Html.TextBoxFor(model => model.BookingTime, new { @type = "time", required = "required" })
+        @Html.ValidationMessageFor(model => model.BookingTime)
+    </div>
+
+    <input type="submit" value="Submit" />
+}

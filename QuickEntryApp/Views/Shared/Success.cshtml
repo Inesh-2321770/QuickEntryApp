@@ -1,0 +1,51 @@
+﻿
+<div id="qrCodeContainer">
+    <!-- Spinner -->
+    <div id="spinner" style="display: none;">
+        <p>Loading...</p>
+    </div>
+
+    <!-- QR Code -->
+    <div id="qrCode" style="display: none;"></div>
+</div>
+
+<!-- Download Button -->
+<button id="downloadButton" style="display: none;">Download QR Code</button>
+<button id="Return" style="display:none;">Done</button>
+
+<script>
+    window.onload = function () {
+        // Show the spinner
+        document.getElementById('spinner').style.display = 'block';
+
+        // Fetch the QR code
+        fetch('/BookingForm/GetQRCode')
+            .then(response => response.text())
+            .then(qrCodeHtml => {
+                // Hide the spinner
+                document.getElementById('spinner').style.display = 'none';
+
+                // Show the QR code
+                var qrCodeDiv = document.getElementById('qrCode');
+                qrCodeDiv.innerHTML = qrCodeHtml;
+                qrCodeDiv.style.display = 'block';
+
+                // Show the download button
+                var downloadButton = document.getElementById('downloadButton');
+                downloadButton.style.display = 'block';
+                downloadButton.onclick = function () {
+                    var link = document.createElement('a');
+                    link.download = 'QRCode.png';
+                    link.href = qrCodeDiv.querySelector('img').src;
+                    link.click();
+                };
+
+                var ReturnBtn = document.getElementById('Return');
+                ReturnBtn.style.display = 'block';
+                ReturnBtn.onclick = function () {
+                    // Redirect to the home page
+                    window.location.href = '/Home';
+                };
+            });
+    };
+</script>

@@ -1,0 +1,76 @@
+﻿@model QuickEntryApp.Utilities.PaginatedList<Booking>
+@{
+    ViewData["Title"] = "Booking Dashboard";
+}
+
+<link rel="stylesheet" href="~/css/AdminDashboard.css">
+<h2>Booking List</h2>
+<div>
+    <form asp-controller="BookingView" asp-action="BookingView" method="get">
+        <div class="form-group">
+            <input type="text" class="form-control" id="searchString" name="searchString" placeholder="Search Booking">
+        </div>
+        <br />
+        <button type="submit" class="btn btn-primary">Search</button>
+        <button <a href="@Url.Action("BookingView")" class="btn btn-primary"></a>Reset</button>
+        <a href="@Url.Action("RedirectAdmin")" class="btn btn-primary">Back</a>
+        
+
+    </form>
+
+    <form asp-controller="BookingView" asp-action="BookingView">
+        <div class="container mt-4">
+            <table class="table table-bordered">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>Booking ID</th>
+                        <th>Username</th>
+                        <th>Date</th>
+                        <th>Time</th>
+                        <th>Payment ID</th>
+                        <th>Total Payment</th>
+                        <th>Status</th>
+                        <th>hola</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var booking in Model)
+                    {
+                        <tr>
+                            <td>@booking.BookingID</td>
+                            <td>@booking.UserName</td>
+                            <td>@booking.Date.ToShortDateString()</td>
+                            <td>@booking.Time</td>
+                            <td>@booking.PaymentID</td>
+                            <td>@booking.Toatalpayment</td> <!-- Correct the typo in the model property name -->
+                            <td>@booking.Status</td>
+                            <td>@booking.Venue.VenueName</td>
+
+                        </tr>
+                    }
+                </tbody>
+            </table>
+            <div class="pagination" id="pagination">
+                <div style="float: left;">
+                    @if (Model.HasPreviousPage)
+                    {
+                        <a href="@Url.Action("BookingView", new { pageNumber = Model.PageIndex - 1 })">Previous</a>
+                    }
+                </div>
+                <div style="float: right;">
+                    @if (Model.HasNextPage)
+                    {
+                        <a href="@Url.Action("BookingView", new { pageNumber = Model.PageIndex + 1 })">Next</a>
+                    }
+                </div>
+            </div>
+        </div>
+        
+            
+        
+    </form>
+
+
+</div>
+
+

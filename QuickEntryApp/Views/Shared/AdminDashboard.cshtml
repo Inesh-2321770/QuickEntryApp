@@ -1,0 +1,186 @@
+﻿@model QuickEntryApp.Utilities.PaginatedList<Venue>
+@{
+    ViewData["Title"] = "Admin Dashboard";
+}
+
+<link rel="stylesheet" href="~/css/AdminDashboard.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+<h2>@ViewData["Title"]</h2>
+
+<div>
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#AddVenue">
+        Add Venues
+    </button>
+    <button type="button" class="btn btn-primary" onclick="toggleVenueFilter()">
+        View Venue
+    </button>
+
+    <button type="button" class="btn btn-primary" onclick="window.location.href='@Url.Action("BookingView", "BookingView")'">
+        Go to Booking View
+    </button>
+</div>
+
+
+<!-- Add Venue Modal -->
+<div class="modal fade" id="AddVenue" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="addVenue" method="post">
+
+                    <div class="form-group">
+                        <label for="VenueName">Venue Name</label>
+                        <input type="text" class="form-control" id="VenueName" name="VenueName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="Capacity">Capacity</label>
+                        <input type="number" class="form-control" id="Capacity" name="Capacity" min="1" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="Address">Address</label>
+                        <input type="text" class="form-control" id="Address" name="Address" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="City">City</label>
+                        <input type="text" class="form-control" id="City" name="City" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="Description">Description</label>
+                        <textarea class="form-control" id="Description" name="Description"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="Phone">Phone</label>
+                        <input type="tel" class="form-control" id="Phone" name="Phone" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="Price">Price</label>
+                        <input type="number" class="form-control" id="Price" name="Price" min="0" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="StartTime">Start Time</label>
+                        <input type="time" class="form-control" id="StartTime" name="StartTime" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="EndTime">End Time</label>
+                        <input type="time" class="form-control" id="EndTime" name="EndTime" required>
+                    </div>
+                    <button class="btn-primary" type="submit">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<br />
+<br />
+
+<!--View Venue-->
+
+<div id="venueFilterId" style="display: none;">
+    <div>
+        <form asp-controller="AdminDashboard" asp-action="AdminDashboard" method="get">
+            <div class="form-group">
+                <input type="text" class="form-control" id="searchString" name="searchString" placeholder="Search venues">
+            </div>
+            <button type="submit" class="btn btn-primary">Search</button>
+            <button <a href="@Url.Action("AdminDashboard")" class="btn btn-primary"></a>Reset</button>
+        </form>
+
+        <form asp-controller="AdminDashboard">
+            <div class="container mt-4">
+                <table class="table table-bordered">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>Venue Name</th>
+                            <th>Capacity</th>
+                            <th>Address</th>
+                            <th>City</th>
+                            <th>Description</th>
+                            <th> Phone</th>
+                            <th>Price</th>
+                            <th>StartTime</th>
+                            <th>EndTime</th>
+                            <tH>Edit</tH>
+                            <th> Delete</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var venue in Model)
+                        {
+                            <tr>
+                                <td>@venue.VenueName</td>
+                                <td>@venue.Capacity</td>
+                                <td>@venue.Address</td>
+                                <td>@venue.City</td>
+                                <td>@venue.Description</td>
+                                <td>@venue.Phone</td>
+                                <td>@venue.Price</td>
+                                <td>@venue.StartTime</td>
+                                <td>@venue.EndTime</td>
+
+
+                                <td><button type="button" class="btn btn-primary" onclick="location.href='@Url.Action("Edit", "AdminDashboard", new { id = venue.VenueID })'">Edit</button> </td>
+
+                                <td> <button type="button" class="btn btn-danger" onclick="location.href='@Url.Action("Delete", "AdminDashboard", new { id = venue.VenueID })'">Delete</button></td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+                <div class="pagination" id="pagination">
+                    <div style="float: left;">
+                        @if (Model.HasPreviousPage)
+                        {
+                            <a href="@Url.Action("AdminDashboard", new { pageNumber = Model.PageIndex - 1 })">Previous</a>
+                        }
+                    </div>
+                    <div style="float: right;">
+                        @if (Model.HasNextPage)
+                        {
+                            <a href="@Url.Action("AdminDashboard", new { pageNumber = Model.PageIndex + 1 })">Next</a>
+                        }
+                    </div>
+                </div>
+            </div>
+        </form>
+
+
+    </div>
+</div>
+
+
+
+
+
+<!--Scrip-->
+<script>
+    window.onload = function () {
+        var venueFilter = document.getElementById('venueFilterId');
+        // Check if the display state is saved in localStorage
+        if (localStorage.getItem('displayState') !== null) {
+            venueFilter.style.display = localStorage.getItem('displayState');
+        }
+    }
+
+    function toggleVenueFilter() {
+        var venueFilter = document.getElementById('venueFilterId');
+        if (venueFilter.style.display === "none") {
+            venueFilter.style.display = "block";
+            // Save the display state in localStorage
+            localStorage.setItem('displayState', 'block');
+        } else {
+            venueFilter.style.display = "none";
+            // Save the display state in localStorage
+            localStorage.setItem('displayState', 'none');
+        }
+    }
+</script>

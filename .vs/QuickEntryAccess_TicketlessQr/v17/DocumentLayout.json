@@ -1,0 +1,77 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\2321770\\OneDrive - Cognizant\\Desktop\\QuickEntryApp\\QuickEntryAccess_TicketlessQr\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{C73F1A2C-DB41-439F-9437-426451742450}|QuickEntryApp\\QuickEntryApp.csproj|c:\\users\\2321770\\onedrive - cognizant\\desktop\\quickentryapp\\quickentryaccess_ticketlessqr\\quickentryapp\\.gitignore||{3B902123-F8A7-4915-9F01-361F908088D0}",
+      "RelativeMoniker": "D:0:0:{C73F1A2C-DB41-439F-9437-426451742450}|QuickEntryApp\\QuickEntryApp.csproj|solutionrelative:quickentryapp\\.gitignore||{3B902123-F8A7-4915-9F01-361F908088D0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C73F1A2C-DB41-439F-9437-426451742450}|QuickEntryApp\\QuickEntryApp.csproj|c:\\users\\2321770\\onedrive - cognizant\\desktop\\quickentryapp\\quickentryaccess_ticketlessqr\\quickentryapp\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{C73F1A2C-DB41-439F-9437-426451742450}|QuickEntryApp\\QuickEntryApp.csproj|solutionrelative:quickentryapp\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C73F1A2C-DB41-439F-9437-426451742450}|QuickEntryApp\\QuickEntryApp.csproj|c:\\users\\2321770\\onedrive - cognizant\\desktop\\quickentryapp\\quickentryaccess_ticketlessqr\\quickentryapp\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C73F1A2C-DB41-439F-9437-426451742450}|QuickEntryApp\\QuickEntryApp.csproj|solutionrelative:quickentryapp\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 2,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c64b9c2-e352-428e-a56d-0ace190b99a6}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": ".gitignore",
+              "DocumentMoniker": "C:\\Users\\2321770\\OneDrive - Cognizant\\Desktop\\QuickEntryApp\\QuickEntryAccess_TicketlessQr\\QuickEntryApp\\.gitignore",
+              "RelativeDocumentMoniker": "QuickEntryApp\\.gitignore",
+              "ToolTip": "C:\\Users\\2321770\\OneDrive - Cognizant\\Desktop\\QuickEntryApp\\QuickEntryAccess_TicketlessQr\\QuickEntryApp\\.gitignore",
+              "RelativeToolTip": "QuickEntryApp\\.gitignore",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAARAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2024-03-25T20:15:16.566Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\Users\\2321770\\OneDrive - Cognizant\\Desktop\\QuickEntryApp\\QuickEntryAccess_TicketlessQr\\QuickEntryApp\\appsettings.json",
+              "RelativeDocumentMoniker": "QuickEntryApp\\appsettings.json",
+              "ToolTip": "C:\\Users\\2321770\\OneDrive - Cognizant\\Desktop\\QuickEntryApp\\QuickEntryAccess_TicketlessQr\\QuickEntryApp\\appsettings.json",
+              "RelativeToolTip": "QuickEntryApp\\appsettings.json",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAQAAAAtAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2024-03-25T19:50:24.779Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\2321770\\OneDrive - Cognizant\\Desktop\\QuickEntryApp\\QuickEntryAccess_TicketlessQr\\QuickEntryApp\\Program.cs",
+              "RelativeDocumentMoniker": "QuickEntryApp\\Program.cs",
+              "ToolTip": "C:\\Users\\2321770\\OneDrive - Cognizant\\Desktop\\QuickEntryApp\\QuickEntryAccess_TicketlessQr\\QuickEntryApp\\Program.cs",
+              "RelativeToolTip": "QuickEntryApp\\Program.cs",
+              "ViewState": "AQIAAAgAAAAAAAAAAAAcwBwAAABfAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-03-22T04:16:20.591Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
